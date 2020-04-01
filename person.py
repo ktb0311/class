@@ -20,12 +20,28 @@ class Manager(Person):
     def giveRaise(self, percent, bonus = 10):
         Person.giveRaise(self, percent + bonus)
 
-bob = Person('Bob Smith')
-sue = Person('Sue Jones', job = 'dev', pay = 100000)
-tom = Manager('Tom Jones', pay = 150000)
+class Department:
+    def __init__(self, *args):
+        self.members = list(args)
+
+    def addMembers(self, person):
+        self.members.append(person)
+
+    def giveRaises(self, percent):
+        for person in self.members:
+            person.giveRaise(percent)
+
+    def showAll(self):
+        for person in self.members:
+            print(person)        
 
 if __name__ == '__main__': 
-    print('--All there--')
-    for obj in (bob, sue, tom):
-        obj.giveRaise(10)
-        print(obj)
+    
+    bob = Person('Bob Smith')
+    sue = Person('Sue Jones', job = 'dev', pay = 100000)
+    tom = Manager('Tom Jones', pay = 150000)
+    
+    development = Department(bob, sue)
+    development.addMembers(tom)
+    development.giveRaises(10)
+    development.showAll()
