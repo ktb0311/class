@@ -13,7 +13,7 @@ class Person:
     def __repr__(self): #Вывод на экран
         return '[Person: %s, %s, %s]' % (self.name, self.job, self.pay)
 
-class Manager:
+class Manager: #Применяем делегирование
     def __init__(self, name, pay):
         self.person = Person(name, 'mgr', pay)
 
